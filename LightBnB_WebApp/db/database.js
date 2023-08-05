@@ -11,9 +11,6 @@ const pool = new Pool({
   database: process.env.DB_NAME
 });
 
-// Test the connection to the database
-// pool.query(`SELECT title FROM properties LIMIT 10;`).then(response => {console.log(response)})
-
 /// Users
 
 /**
@@ -23,8 +20,7 @@ const pool = new Pool({
  */
 const getUserWithEmail = (email) => {
   return pool
-    .query(
-      `SELECT * FROM users WHERE email = $1`, [email])
+    .query(`SELECT * FROM users WHERE email = $1`, [email])
     .then((result) => {
       if (!result.rows.length) {
         return null;
@@ -44,8 +40,7 @@ const getUserWithEmail = (email) => {
  */
 const getUserWithId = (id) => {
   return pool
-    .query(
-      `SELECT * FROM users WHERE id = $1`, [id])
+    .query(`SELECT * FROM users WHERE id = $1`, [id])
     .then((result) => {
       if (!result.rows.length) {
         return null;
