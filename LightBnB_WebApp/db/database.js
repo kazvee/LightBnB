@@ -135,12 +135,12 @@ const getAllProperties = (options, limit = 10) => {
   }
 
   if (options.minimum_price_per_night) {
-    queryParams.push(`${options.minimum_price_per_night * 100}`); // Prices are stored in cents, not dollars
+    queryParams.push(`${options.minimum_price_per_night}`);
     queryString += `AND cost_per_night >= $${queryParams.length} `;
   }
 
   if (options.maximum_price_per_night) {
-    queryParams.push(`${options.maximum_price_per_night * 100}`);
+    queryParams.push(`${options.maximum_price_per_night}`);
     queryString += `AND cost_per_night <= $${queryParams.length} `;
   }
 
