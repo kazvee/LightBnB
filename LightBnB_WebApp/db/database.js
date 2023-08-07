@@ -102,13 +102,69 @@ const getAllReservations = (guestId, limit = 10) => {
 
 /**
  * Get all properties.
- * @param {{}} options An object containing query options.
- * @param {*} limit The number of results to return.
- * @return {Promise<[{}]>}  A promise to the properties.
- */
+ * @param {{
+* city?: string,
+* owner_id?: number,
+* minimum_price_per_night?: number,
+* maximum_price_per_night?: number,
+* minimum_rating?: number
+* }} [options] An object containing query options.
+* @param {number} [limit = 10] The number of results to return.
+* @return {Promise<[{}]>}  A promise to the properties.
+*/
 const getAllProperties = (options, limit = 10) => {
+
+  const queryParams = [];
+
+  // Start the query with all information that comes before the WHERE clause
+  let queryString = `
+  SELECT properties.*, AVG(property_reviews.rating) AS average_rating
+  FROM properties
+  JOIN property_reviews ON properties.id = property_id
+  `;
+
+  // Use array.length to dynamically get the $n placeholder number
+  // Since this is the first parameter, it will be $1
+  if (options.city) {
+    queryParams.push(`%${options.city}%`);
+    queryString += `WHERE city LIKE $${queryParams.length} `;
+  }
+
+  if (options.owner_id) {
+    queryParams.push(`${options.owner_id}`);
+    queryString += `AND owner_id = $${queryParams.length} `;
+  }
+
+  if (options.minimum_price_per_night) {
+    queryParams.push(`${options.minimum_price_per_night * 100}`); // Prices are stored in cents, not dollars
+    queryString += `AND cost_per_night >= $${queryParams.length} `;
+  }
+
+  if (options.maximum_price_per_night) {
+    queryParams.push(`${options.maximum_price_per_night * 100}`);
+    queryString += `AND cost_per_night <= $${queryParams.length} `;
+  }
+
+  // Add any query that comes after the WHERE clause
+  queryString += `
+  GROUP BY properties.id
+  `;
+
+  if (options.minimum_rating) {
+    queryParams.push(`${options.minimum_rating}`);
+    queryString += `HAVING AVG(property_reviews.rating) >= $${queryParams.length} `;
+  }
+
+  queryParams.push(limit);
+  queryString += `
+  ORDER BY cost_per_night
+  LIMIT $${queryParams.length};
+  `;
+
+  console.log(queryString, queryParams);
+
   return pool
-    .query(`SELECT * FROM properties LIMIT $1`, [limit])
+    .query(queryString, queryParams)
     .then((result) => {
       console.log(result.rows);
       return result.rows;
