@@ -14,8 +14,8 @@ country, street, city, province, post_code, active) VALUES
 (1, 'Sunny Shore', 'Dance your cares away', 'https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&cs=tinysrgb&h=350',
 'https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg', 85234, 6, 6, 7,
 'Canada', '123 Rainbow Road', 'Banoffee', 'Alberta', 83680, true),
-(2, 'Forest Hike', 'Enjoy the fresh air', 'https://images.pexels.com/photos/2080018/pexels-photo-2080018.jpeg?auto=compress&cs=tinysrgb&h=350',
-'https://images.pexels.com/photos/2080018/pexels-photo-2080018.jpeg', 46058, 0, 5, 6,
+(2, 'Forest Hike', 'Enjoy the fresh air', 'https://images.pexels.com/photos/2079434/pexels-photo-2079434.jpeg?auto=compress&cs=tinysrgb&h=350',
+'https://images.pexels.com/photos/2079434/pexels-photo-2079434.jpeg', 46058, 0, 5, 6,
 'Canada', '1818 Highway 2', 'Plamondeureux', 'Newfoundland And Labrador', 44583, true);
 
 INSERT INTO reservations
