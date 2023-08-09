@@ -1,14 +1,4 @@
-const { Pool } = require('pg');
-const dotenv = require('dotenv');
-
-dotenv.config();
-
-const pool = new Pool({
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME
-});
+const { query } = require('./index');
 
 /// Users
 
@@ -18,8 +8,7 @@ const pool = new Pool({
  * @return {Promise<{}>} A promise to the user.
  */
 const getUserWithEmail = (email) => {
-  return pool
-    .query(`SELECT * FROM users WHERE email = $1`, [email])
+  return query(`SELECT * FROM users WHERE email = $1`, [email])
     .then((result) => {
       if (!result.rows.length) {
         return null;
@@ -38,8 +27,7 @@ const getUserWithEmail = (email) => {
  * @return {Promise<{}>} A promise to the user.
  */
 const getUserWithId = (id) => {
-  return pool
-    .query(`SELECT * FROM users WHERE id = $1`, [id])
+  return query(`SELECT * FROM users WHERE id = $1`, [id])
     .then((result) => {
       if (!result.rows.length) {
         return null;
@@ -58,8 +46,7 @@ const getUserWithId = (id) => {
  * @return {Promise<{}>} A promise to the user.
  */
 const addUser = (user) => {
-  return pool
-    .query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *;`, [user.name, user.email, user.password])
+  return query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *;`, [user.name, user.email, user.password])
     .then((result) => {
       console.log(result.rows);
       return result.rows;
@@ -77,8 +64,7 @@ const addUser = (user) => {
  * @return {Promise<[{}]>} A promise to the reservations.
  */
 const getAllReservations = (guestId, limit = 10) => {
-  return pool
-    .query(`
+  return query(`
     SELECT reservations.*, properties.*, AVG(rating) AS average_rating
     FROM reservations
     JOIN properties ON reservations.property_id = properties.id
@@ -162,8 +148,7 @@ const getAllProperties = (options, limit = 10) => {
 
   console.log(queryString, queryParams);
 
-  return pool
-    .query(queryString, queryParams)
+  return query(queryString, queryParams)
     .then((result) => {
       console.log(result.rows);
       return result.rows;
@@ -194,8 +179,7 @@ const getAllProperties = (options, limit = 10) => {
  * @return {Promise<{}>} A promise to the property.
  */
 const addProperty = (property) => {
-  return pool
-    .query(`
+  return query(`
   INSERT INTO properties (    
     owner_id,
     title,
@@ -214,22 +198,22 @@ const addProperty = (property) => {
   )
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
     RETURNING *;`,
-    [
-      property.owner_id,
-      property.title,
-      property.description,
-      property.thumbnail_photo_url,
-      property.cover_photo_url,
-      property.cost_per_night,
-      property.street,
-      property.city,
-      property.province,
-      property.post_code,
-      property.country,
-      property.parking_spaces,
-      property.number_of_bathrooms,
-      property.number_of_bedrooms
-    ])
+  [
+    property.owner_id,
+    property.title,
+    property.description,
+    property.thumbnail_photo_url,
+    property.cover_photo_url,
+    property.cost_per_night,
+    property.street,
+    property.city,
+    property.province,
+    property.post_code,
+    property.country,
+    property.parking_spaces,
+    property.number_of_bathrooms,
+    property.number_of_bedrooms
+  ])
     .then((result) => {
       console.log(result.rows);
       return result.rows;
