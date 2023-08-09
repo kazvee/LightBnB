@@ -13,7 +13,6 @@ const getUserWithEmail = (email) => {
       if (!result.rows.length) {
         return null;
       }
-      console.log(result.rows[0]);
       return result.rows[0];
     });
 };
@@ -29,7 +28,6 @@ const getUserWithId = (id) => {
       if (!result.rows.length) {
         return null;
       }
-      console.log(result.rows[0]);
       return result.rows[0];
     });
 };
@@ -42,7 +40,6 @@ const getUserWithId = (id) => {
 const addUser = (user) => {
   return query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *;`, [user.name, user.email, user.password])
     .then((result) => {
-      console.log(result.rows);
       return result.rows;
     });
 };
@@ -66,7 +63,6 @@ const getAllReservations = (guestId, limit = 10) => {
     LIMIT $2;
   `, [guestId, limit])
     .then((result) => {
-      console.log(result.rows);
       return result.rows;
     });
 };
@@ -134,11 +130,8 @@ const getAllProperties = (options, limit = 10) => {
   LIMIT $${queryParams.length};
   `;
 
-  console.log(queryString, queryParams);
-
   return query(queryString, queryParams)
     .then((result) => {
-      console.log(result.rows);
       return result.rows;
     });
 };
@@ -200,10 +193,8 @@ const addProperty = (property) => {
     property.number_of_bedrooms
   ])
     .then((result) => {
-      console.log(result.rows);
       return result.rows;
     });
-
 };
 
 module.exports = {
