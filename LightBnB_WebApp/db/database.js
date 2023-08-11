@@ -1,6 +1,8 @@
 const { query } = require('./index');
 
-/// Users
+//=======================
+//        USERS
+//=======================
 
 /**
  * Get a single user from the database given their email.
@@ -44,7 +46,9 @@ const addUser = (user) => {
     });
 };
 
-/// Reservations
+//==============================
+//        RESERVATIONS
+//==============================
 
 /**
  * Get all reservations for a single user.
@@ -67,7 +71,9 @@ const getAllReservations = (guestId, limit = 10) => {
     });
 };
 
-/// Properties
+//============================
+//        PROPERTIES
+//============================
 
 /**
  * Get all properties.
