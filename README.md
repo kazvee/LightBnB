@@ -6,23 +6,23 @@ LightBnB is a multi-page Airbnb clone. With a front-end provided by [LightBnB_We
 
 **Logged-in User View:**  
 
-!["Screenshot Logged-in User View"](/docs/logged-in-screenshot.jpg)
+!["Screenshot Logged-in User View"](/docs/logged_in_screenshot.jpg)
 
 **View of Create Listing page:**  
 
-!["Screenshot of Create Listing"](/docs/create-listing-screenshot.jpg)
+!["Screenshot of Create Listing"](/docs/create_listing_screenshot.jpg)
 
 **View of Search page:**  
 
-!["Screenshot of Search Options"](/docs/search-options-screenshot.jpg)
+!["Screenshot of Search Options"](/docs/search_options_screenshot.jpg)
 
 **View of Sign Up page:**  
 
-!["Screenshot of Search Options"](/docs/sign-up-screenshot.jpg)
+!["Screenshot of Search Options"](/docs/sign_up_screenshot.jpg)
 
 **View of Log In page:**  
 
-!["Screenshot of Search Options"](/docs/log-in-screenshot.jpg)
+!["Screenshot of Search Options"](/docs/log_in_screenshot.jpg)
 
 ## Purpose
 
