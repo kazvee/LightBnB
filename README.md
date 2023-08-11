@@ -26,7 +26,7 @@ LightBnB is a multi-page Airbnb clone. With a front-end provided by [LightBnB_We
 
 ## Purpose
 
-This project was created by [me](https://github.com/karvok) as part of my learnings at [Lighthouse Labs](https://www.lighthouselabs.ca/en/web-development-flex-program).
+This project was created by [me](https://github.com/kazvee) as part of my learnings at [Lighthouse Labs](https://www.lighthouselabs.ca/en/web-development-flex-program).
 
 ## How to Use This Site
 
@@ -56,7 +56,7 @@ Click on the **My Reservations** menu option to view full details about your con
 ### Just Browsing For Now?
 
 No need to login to have a look around! Use our speedy **Search** feature to get inspiration for your next retreat!  
-You can narrow down your options with our optional filters: *City*, *Minimum Price per Night*, *Maximum Price per Night*, and *Minimum Rating*.  
+To narrow down your results, use our optional filters: *City*, *Minimum Price per Night*, *Maximum Price per Night*, and *Minimum Rating*.  
 Once you've found the ideal local host on **your** localhost, make sure to **Register** or **Login** to book your reservation!
 
 ## Stretch / Extra Features
@@ -69,7 +69,7 @@ Recent database improvements will enable our front-end to be further developed t
 
 ## Planned Improvements
 
-* Prices currently **include cents** when listing or booking properties, so `10000` = `$100.00`. Please pay close attention when entering prices.
+* Prices currently **include cents** when listing or booking properties, so typing in `10000` will equal `$100.00`. Please pay close attention when entering prices.  
 * After property owners use Create Listing, the newly-created entry will not immediately display under their My Listings, as this view currently only shows properties with existing guest review ratings.
 * Did our frontend developer use this site to book an extended vacation? 🤔 We'll be polishing up the look and feel of our online booking platform early next year!
 
